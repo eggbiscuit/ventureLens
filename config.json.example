@@ -1,0 +1,62 @@
+{
+    "llm": {
+        "provider": "openrouter",
+        "openrouter_api_key": "your-openrouter-api-key-here",
+        "model": "anthropic/claude-3.5-sonnet",
+        "temperature": 0.1,
+        "max_tokens": 2000
+    },
+    "search": {
+        "tavily_api_key": "your-tavily-api-key-here",
+        "serper_api_key": "your-serper-api-key-here",
+        "timeout": 30,
+        "max_results": 10
+    },
+    "enterprise_sources": {
+        "tianyancha": {
+            "enabled": false,
+            "api_key": "your-tianyancha-api-key-here",
+            "base_url": "https://open.tianyancha.com",
+            "timeout": 30
+        },
+        "aiqicha": {
+            "enabled": false,
+            "api_key": "your-aiqicha-api-key-here",
+            "base_url": "https://aiqicha.baidu.com",
+            "timeout": 30
+        }
+    },
+    "mcp": {
+        "enabled": true,
+        "servers": {
+            "filesystem": {
+                "enabled": false,
+                "command": ["uvx", "mcp-server-filesystem"],
+                "args": ["/tmp"]
+            },
+            "web_search": {
+                "enabled": false,
+                "command": ["npx", "-y", "@modelcontextprotocol/server-web-search"],
+                "args": []
+            },
+            "enterprise_data": {
+                "enabled": false,
+                "command": ["python", "-m", "mcp_servers.enterprise"],
+                "args": []
+            }
+        }
+    },
+    "scoring": {
+        "max_score": 10.0,
+        "min_score": 0.0,
+        "default_confidence": 0.7
+    },
+    "checkpoints": {
+        "enabled": true,
+        "directory": "./checkpoints"
+    },
+    "output": {
+        "report_directory": "./report",
+        "template_directory": "./report/templates"
+    }
+}
